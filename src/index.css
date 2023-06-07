@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.my-container {
+  @apply max-w-[2520px] mx-auto px-5 md:px-10 lg:px-20;
+}
+
+.my-color {
+  background-color: #fd8365;
+}
+
+.active {
+  color: #f76c4a;
+  background-color: #0000;
+}
+
+.my-btn {
+  @apply btn hover:bg-[#fd603d] my-color text-white px-4 py-3 rounded-lg cursor-pointer;
+}

@@ -1,8 +1,10 @@
+import Navbar from "../shear/Navbar/Navbar";
 
 const Main = () => {
     return (
-        <div>
-            this is main lay out
+        <div >
+            <Navbar/>
+
         </div>
     );
 };
