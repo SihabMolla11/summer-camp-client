@@ -1,29 +1,54 @@
 import Lottie from "lottie-react";
 import loginLotte from "../../assets/login/login.json";
 import { useForm } from "react-hook-form";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { Link, useNavigate } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
+import { TbFidgetSpinner } from "react-icons/tb";
+import GoogleLogin from "./GoogleLogin";
 
 const Login = () => {
+  const { loginUser, loading, setLoading } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
+    setLoading(true);
+    const { email, password } = data;
+    loginUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("Login successful");
+        navigate("/");
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
   };
 
   return (
-    <div className="my-container bg-base-200 p-10">
+    <div className="my-container bg-base-200 py-10">
       <div>
         <div className="flex items-center gap-[150px]">
           <div className="w-full">
             <Lottie animationData={loginLotte} />
           </div>
-          <div className="w-full rounded-lg bg-base-100 p-10 ">
-            <div className="card-body">
+          <div className="w-full  rounded-lg bg-base-100 py-10 ">
+            <div className="flex items-center justify-between px-16 mb-5 ">
               <p className="text-4xl font-semibold">Login</p>
-
+              <GoogleLogin />
+            </div>
+            <hr />
+            <div className="card-body px-16 ">
               <form onSubmit={handleSubmit(onSubmit)} className=" space-y-5">
                 <div className="form-control">
                   <label className="label">
@@ -64,13 +89,29 @@ const Login = () => {
                     </a>
                   </label>
                 </div>
+
                 <div className="form-control mt-6">
-                  <button className="my-btn">Login</button>
+                  {loading ? (
+                    <button className="my-btn ">
+                      <TbFidgetSpinner className="animate-spin text-2xl" />
+                    </button>
+                  ) : (
+                    <input className="my-btn" type="submit" value="Login" />
+                  )}
+                </div>
+                <div className="mt-16">
+                  <Link to="/signup">
+                    If you do not have account?
+                    <span className="text-red-600 font-bold">Sign Up</span>
+                  </Link>
                 </div>
               </form>
+
+              <p className=" text-sm text-red-500">{error}</p>
             </div>
           </div>
         </div>
+        <Toaster />
       </div>
     </div>
   );

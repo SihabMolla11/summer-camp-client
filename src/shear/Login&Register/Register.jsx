@@ -1,28 +1,86 @@
 import Lottie from "lottie-react";
 import loginLotte from "../../assets/login/login.json";
 import { useForm } from "react-hook-form";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { Toaster, toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
+import { TbFidgetSpinner } from "react-icons/tb";
+import GoogleLogin from "./GoogleLogin";
 
+const image_upload_key = import.meta.env.VITE_IMAGE_UPLOA_KEY;
 const Register = () => {
+  const imageHostUrl = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
+
+  const { createUser, updateUser, setLoading, loading } =
+    useContext(AuthContext);
+
+  const [error, setError] = useState("");
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    setLoading(true);
+    if (data?.conformPassword !== data?.password) {
+      setError("your password not matching");
+      return;
+    }
+
+    const { email, password, name } = data;
+
+    // upload image operation
+    const formData = new FormData();
+    formData.append("image", data?.photo[0]);
+
+    fetch(imageHostUrl, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((resImage) => {
+        const imageUrl = resImage?.data?.display_url;
+        console.log(imageUrl);
+        createUser(email, password)
+          .then((result) => {
+            updateUser(name, imageUrl)
+              .then(() => {
+                console.log(result.user);
+                toast.success("sing Up successful");
+                setLoading(false);
+              })
+              .catch((error) => {
+                setError(error.message);
+                toast.error(error.message);
+                setLoading(false);
+              });
+          })
+          .catch((error) => {
+            setError(error.message);
+            toast.error(error.message);
+            setLoading(false);
+          });
+      });
+
+    // console.log(data);
   };
 
   return (
     <>
       <div className="my-container bg-base-200 p-10">
         <div>
-          <div className="flex items-center gap-[150px]">
+          <div className="flex flex-row-reverse items-center gap-[150px]">
             <div className="w-full">
               <Lottie animationData={loginLotte} />
             </div>
-            <div className="w-full rounded-lg bg-base-100 p-10 ">
-              <div className="card-body">
+            <div className="w-full rounded-lg bg-base-100 py-10">
+              <div className="flex items-center justify-between px-16 mb-5 ">
+                <p className="text-4xl font-semibold">Login</p>
+                <GoogleLogin  />
+              </div>
+              <hr />
+              <div className="card-body px-16">
                 <p className="text-4xl font-semibold">Sign up</p>
                 <form onSubmit={handleSubmit(onSubmit)} className=" space-y-5">
                   <div className="form-control">
@@ -37,7 +95,9 @@ const Register = () => {
                       {...register("name", { required: true })}
                     />
                     {errors.name && (
-                      <span className="text-red-600">Please inter your name</span>
+                      <span className="text-red-600">
+                        Please inter your name
+                      </span>
                     )}
                   </div>
                   <div className="form-control">
@@ -48,11 +108,13 @@ const Register = () => {
                       type="file"
                       placeholder="name"
                       className="file-input  file-input-error w-full "
-                      name="phot"
+                      name="photo"
                       {...register("photo", { required: true })}
                     />
-                    {errors.name && (
-                      <span className="text-red-600">Please upload Your profile pic</span>
+                    {errors.photo && (
+                      <span className="text-red-600">
+                        Please upload Your profile pic
+                      </span>
                     )}
                   </div>
                   <div className="form-control">
@@ -66,8 +128,10 @@ const Register = () => {
                       name="email"
                       {...register("email", { required: true })}
                     />
-                    {errors.name && (
-                      <span className="text-red-600">Please inter your email</span>
+                    {errors.email && (
+                      <span className="text-red-600">
+                        Please inter your email
+                      </span>
                     )}
                   </div>
                   <div className="form-control">
@@ -79,10 +143,17 @@ const Register = () => {
                       placeholder="*******"
                       className="input input-bordered"
                       name="password"
-                      {...register("password", { required: true, minLength: 6 })}
+                      {...register("password", {
+                        required: true,
+                        minLength: 6,
+                        pattern: /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/,
+                      })}
                     />
-                    {errors.name && (
-                      <span className="text-red-600">Please inter your Password</span>
+                    {errors.password && (
+                      <span className="text-red-600">
+                        password need at last 6 character one capital latter and
+                        one spatial character{" "}
+                      </span>
                     )}
                   </div>
                   <div className="form-control">
@@ -93,10 +164,13 @@ const Register = () => {
                       type="password"
                       placeholder="*******"
                       name="conformPassword"
-                      {...register("conformPassword", { required: true, minLength: 6 })}
+                      {...register("conformPassword", {
+                        required: true,
+                        minLength: 6,
+                      })}
                       className="input input-bordered"
                     />
-                    {errors.name && (
+                    {errors.conformPassword && (
                       <span className="text-red-600">Name is required</span>
                     )}
                     <label className="label">
@@ -106,12 +180,26 @@ const Register = () => {
                     </label>
                   </div>
                   <div className="form-control mt-6">
-                    <button className="my-btn">Sign up</button>
+                    {loading ? (
+                      <button className="my-btn ">
+                        <TbFidgetSpinner className="animate-spin text-2xl" />
+                      </button>
+                    ) : (
+                      <input className="my-btn" type="submit" value="Sign up" />
+                    )}
+                  </div>
+                  <div className="mt-16">
+                    <Link to="/login">
+                      If you do not have account?
+                      <span className="text-red-600 font-bold">Login</span>
+                    </Link>
                   </div>
                 </form>
+                <p className=" text-sm text-red-500">{error}</p>
               </div>
             </div>
           </div>
+          <Toaster />
         </div>
       </div>
     </>

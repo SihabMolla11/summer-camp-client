@@ -1,8 +1,20 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FaRegUserCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const NavItem = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handelLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   const menuItems = (
     <>
       <li>
@@ -66,23 +78,44 @@ const NavItem = () => {
         <div className="navbar-end">
           <div className="hidden md:block">
             <div className="flex  items-center gap-5">
-              <Link to="/login" className="my-btn">Login</Link>
+              {user ? (
+                <button onClick={handelLogOut} className="my-btn">
+                  Log Out
+                </button>
+              ) : (
+                <Link to="/login" className="my-btn">
+                  Login
+                </Link>
+              )}
               <div className="dropdown dropdown-end ">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className=" text-5xl rounded-full">
-                    <FaRegUserCircle />
+                    {user ? (
+                      <img src={user.photoURL} alt="" />
+                    ) : (
+                      <FaRegUserCircle />
+                    )}
                   </div>
                 </label>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content mt-3 space-y-2 py-3 px-5 shadow bg-base-100 rounded-box "
+                  className="menu menu-sm dropdown-content px-4 mt-3 space-y-2 py-3 px-5 shadow bg-base-100 rounded-box "
                 >
-                  <li>
-                    <Link to="/login">Login</Link>
-                  </li>
-                  <li>
-                    <Link to="/signup">Sign Up</Link>
-                  </li>
+                  {user ? (
+                    <button className="px-4" onClick={handelLogOut}>
+                      Logout
+                    </button>
+                  ) : (
+                    <>
+                      {" "}
+                      <li>
+                        <Link to="/login">Login</Link>
+                      </li>
+                      <li>
+                        <Link to="/signup">Sign Up</Link>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
             </div>
@@ -92,19 +125,32 @@ const NavItem = () => {
             <div className="dropdown dropdown-end ">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className=" text-4xl rounded-full">
-                  <FaRegUserCircle />
+                  {user ? (
+                    <img src={user.photoURL} alt="" />
+                  ) : (
+                    <FaRegUserCircle />
+                  )}
                 </div>
               </label>
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 py-3 px-5 shadow bg-base-100 rounded-box "
               >
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
-                <li>
-                  <Link to="/signup">Sign Up</Link>
-                </li>
+                {user ? (
+                  <button className="px-4" onClick={handelLogOut}>
+                    Logout
+                  </button>
+                ) : (
+                  <>
+                    {" "}
+                    <li>
+                      <Link to="/login">Login</Link>
+                    </li>
+                    <li>
+                      <Link to="/signup">Sign Up</Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>
