@@ -7,6 +7,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import GoogleLogin from "./GoogleLogin";
+import { AddUsers } from "../../api/user";
 
 const image_upload_key = import.meta.env.VITE_IMAGE_UPLOA_KEY;
 const Register = () => {
@@ -46,8 +47,10 @@ const Register = () => {
           .then((result) => {
             updateUser(name, imageUrl)
               .then(() => {
-                console.log(result.user);
+                // add user
+                AddUsers(result?.user);
                 toast.success("sing Up successful");
+
                 setLoading(false);
               })
               .catch((error) => {
@@ -77,7 +80,7 @@ const Register = () => {
             <div className="w-full rounded-lg bg-base-100 py-10">
               <div className="flex items-center justify-between px-16 mb-5 ">
                 <p className="text-4xl font-semibold">Login</p>
-                <GoogleLogin  />
+                <GoogleLogin />
               </div>
               <hr />
               <div className="card-body px-16">

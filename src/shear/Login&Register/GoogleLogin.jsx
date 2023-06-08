@@ -3,11 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AddUsers } from "../../api/user";
 
 const GoogleLogin = () => {
   const { loading, setLoading, googleSigning } = useContext(AuthContext);
 
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handelGoogleSing = () => {
     setLoading(true);
@@ -15,8 +16,13 @@ const GoogleLogin = () => {
       .then((result) => {
         console.log(result);
         toast.success("login successful");
+
+        // add user
+        AddUsers(result?.user);
+        toast.success("sing Up successful");
+
         setLoading(false);
-        navigate("/")
+        navigate("/");
       })
       .catch((error) => {
         console.log(error.message);

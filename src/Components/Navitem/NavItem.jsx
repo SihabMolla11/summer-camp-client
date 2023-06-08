@@ -91,7 +91,7 @@ const NavItem = () => {
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className=" text-5xl rounded-full">
                     {user ? (
-                      <img src={user.photoURL} alt="" />
+                      <img src={user?.photoURL} alt="" />
                     ) : (
                       <FaRegUserCircle />
                     )}
@@ -126,7 +126,7 @@ const NavItem = () => {
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className=" text-4xl rounded-full">
                   {user ? (
-                    <img src={user.photoURL} alt="" />
+                    <img src={user?.photoURL} alt="" />
                   ) : (
                     <FaRegUserCircle />
                   )}
