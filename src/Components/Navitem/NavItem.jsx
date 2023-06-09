@@ -79,11 +79,11 @@ const NavItem = () => {
           <div className="hidden md:block">
             <div className="flex  items-center gap-5">
               {user ? (
-                <button onClick={handelLogOut} className="my-btn">
+                <button onClick={handelLogOut} className="my-outline-btn">
                   Log Out
                 </button>
               ) : (
-                <Link to="/login" className="my-btn">
+                <Link to="/login" className="my-outline-btn">
                   Login
                 </Link>
               )}

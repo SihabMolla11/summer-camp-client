@@ -6,7 +6,7 @@
 }
 
 .my-color {
-  background-color: #fd8365;
+  background-color: #fd603d;
 }
 
 .active {
@@ -16,4 +16,8 @@
 
 .my-btn {
   @apply btn hover:bg-[#fd603d] my-color text-white px-4 py-3 rounded-lg cursor-pointer;
+}
+
+.my-outline-btn {
+  @apply btn btn-outline hover:bg-[#FD603D] hover:border-[#FD603D] border-[#FD603D] text-[#ff5934];
 }

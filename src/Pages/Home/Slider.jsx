@@ -5,14 +5,15 @@ import sliderImg2 from "../../assets/sliderImage/slider4.png";
 import sliderImg3 from "../../assets/sliderImage/slider1.png";
 import sliderImg4 from "../../assets/sliderImage/slider-3.png";
 import { FaArrowRight } from "react-icons/fa";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Slider = () => {
   return (
     <div>
-      <div>
+      <div className="text-center ">
         <Carousel>
-          <div className=" relative">
-            <div className=" text-left p-10 h-full w-full absolute z-10  text-white    bg-gradient-to-r from-[#000000] to-[#00000000]">
+          <div className=" relative ">
+            <div className=" text-left  p-10 h-full w-full absolute z-10  text-white    bg-gradient-to-r from-[#000000] to-[#00000000]">
               <h2 className="text-5xl font-bold">
                 {" "}
                 Unveiling the <br /> Beauty of <br /> Photography{" "}
@@ -28,7 +29,7 @@ const Slider = () => {
                 Get select Class <FaArrowRight className="text-lg" />
               </button>
             </div>
-            <img className="rounded-b-lg " src={sliderImg2} />
+            <img  src={sliderImg2} />
           </div>
           <div className=" relative">
             <div className=" text-left p-10 h-full w-full absolute z-10  text-white    bg-gradient-to-r from-[#000000] to-[#00000000]">
@@ -47,7 +48,7 @@ const Slider = () => {
                 Get select Class <FaArrowRight className="text-lg" />
               </button>
             </div>
-            <img className="rounded-b-lg " src={sliderImg1} />
+            <img  src={sliderImg1} />
           </div>
           <div className=" relative">
             <div className=" text-left p-10 h-full w-full absolute z-10  text-white    bg-gradient-to-r from-[#000000] to-[#00000000]">
@@ -66,7 +67,7 @@ const Slider = () => {
                 Get select Class <FaArrowRight className="text-lg" />
               </button>
             </div>
-            <img className="rounded-b-lg " src={sliderImg3} />
+            <img  src={sliderImg3} />
           </div>
           <div className=" relative">
             <div className=" text-left p-10 h-full w-full absolute z-10  text-white    bg-gradient-to-r from-[#000000] to-[#00000000]">
@@ -85,7 +86,7 @@ const Slider = () => {
                 Get select Class <FaArrowRight className="text-lg" />
               </button>
             </div>
-            <img className="rounded-b-lg" src={sliderImg4} />
+            <img  src={sliderImg4} />
           </div>
         </Carousel>
       </div>
