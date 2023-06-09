@@ -1,9 +1,35 @@
-import {BsArrowRightShort} from "react-icons/bs"
+import { useContext } from "react";
+import { BsArrowRightShort } from "react-icons/bs";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 const ClassCard = ({ data }) => {
-  console.log(data);
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { name, image, InstructorName, sets, price } = data;
+
+  const handelSelectedClass = () => {
+    if (!user) {
+      Swal.fire({
+        title: "Please Login First",
+        text: "if you want select any class? Then you have to login !",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          return navigate("/login");
+        }
+      });
+    } else {
+      toast.success("class Selected successfully");
+    }
+  };
 
   return (
     <div>
@@ -31,11 +57,15 @@ const ClassCard = ({ data }) => {
           </div>
           <hr />
           <div className="card-actions justify-end p-6">
-            <button className="my-outline-btn flex items-center">
-              <p>Select class</p> <BsArrowRightShort className="text-4xl"/>
+            <button
+              onClick={handelSelectedClass}
+              className="my-outline-btn flex items-center"
+            >
+              <p>Select class</p> <BsArrowRightShort className="text-4xl" />
             </button>
           </div>
         </div>
+        <Toaster />
       </div>
     </div>
   );

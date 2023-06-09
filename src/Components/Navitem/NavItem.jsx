@@ -26,9 +26,16 @@ const NavItem = () => {
       <li>
         <NavLink to="/classes">Classes</NavLink>
       </li>
-      <li>
-        <NavLink to="dashboard">Dashboard</NavLink>
-      </li>
+
+      {user ? (
+        <li>
+          <NavLink to="dashboard">Dashboard</NavLink>
+        </li>
+      ) : (
+        <li>
+          <NavLink to="signup">Sign Up</NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -75,6 +82,7 @@ const NavItem = () => {
             {menuItems}
           </ul>
         </div>
+
         <div className="navbar-end">
           <div className="hidden md:block">
             <div className="flex  items-center gap-5">

@@ -3,7 +3,7 @@ import loginLotte from "../../assets/login/login.json";
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import GoogleLogin from "./GoogleLogin";
@@ -12,6 +12,9 @@ const Login = () => {
   const { loginUser, loading, setLoading } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
 
   const {
     register,
@@ -26,7 +29,7 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         toast.success("Login successful");
-        navigate("/");
+        navigate(from, { replace: true });
         setLoading(false);
       })
       .catch((error) => {

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { FaRegHeart, FaRegListAlt } from "react-icons/fa";
+import {  FaRegListAlt } from "react-icons/fa";
+import {BiCommentCheck} from "react-icons/bi"
 
 const StudentMenuItem = () => {
   return (
@@ -8,7 +9,7 @@ const StudentMenuItem = () => {
         <ul>
           <li>
             <NavLink to="selected-classes" className="dashBord-menu-item">
-              <FaRegHeart /> <span>Selected Class</span>
+              <BiCommentCheck /> <span>Selected Class</span>
             </NavLink>
           </li>
           <li>
