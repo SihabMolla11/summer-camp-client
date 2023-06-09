@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { MdOutlineAddAPhoto } from "react-icons/md";
+import BecomInstructor from "../../Components/BecomeHostBtn/BecomInstructor";
 
 const UserProfile = () => {
-  const { user } = useContext(AuthContext);
-  const role = user?.role;
+  const { user, isInstructor } = useContext(AuthContext);
 
   return (
     <div>
@@ -13,11 +12,9 @@ const UserProfile = () => {
       </div>
       <h2 className="text-center text-xl font-bold">{user?.displayName}</h2>
       <div className="text-center">
-        {role === "instructor" ? (
-          ""
-        ) : (
+        {!isInstructor && (
           <button className="my-btn mt-5">
-            <MdOutlineAddAPhoto className="text-2xl" /> Become A Instructor
+            <BecomInstructor />
           </button>
         )}
       </div>

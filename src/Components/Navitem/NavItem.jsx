@@ -3,9 +3,10 @@ import logo from "../../assets/logo.png";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import BecomInstructor from "../BecomeHostBtn/BecomInstructor";
 
 const NavItem = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, isInstructor } = useContext(AuthContext);
 
   const handelLogOut = () => {
     logOut()
@@ -84,6 +85,14 @@ const NavItem = () => {
         </div>
 
         <div className="navbar-end">
+          <>
+            {!isInstructor?.role && (
+              <div className=" cursor-pointer mr-4 border-2 px-3 py-2 rounded-full">
+                <BecomInstructor />
+              </div>
+            )}
+          </>
+
           <div className="hidden md:block">
             <div className="flex  items-center gap-5">
               {user ? (

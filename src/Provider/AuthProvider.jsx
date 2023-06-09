@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../Firebase/firebase";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
@@ -19,6 +20,8 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [allUsers, setAllUsers] = useState([]);
+  const [isInstructor, setInstructor] = useState(null);
 
   // create user
   const createUser = (email, password) => {
@@ -63,15 +66,36 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // get all users
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_LINK}/users`)
+      .then((res) => setAllUsers(res.data));
+  }, []);
+
+  // getCurrentUser(user?.email).then((res) => {
+  //   setInstructor(res.data)
+  //   console.log(res?.data)
+  // });
+  // console.log(isInstructor)
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_LINK}/users/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setInstructor(data?.role));
+  }, [user]);
+
   const authInfo = {
     user,
+    allUsers,
     loading,
+    isInstructor,
     setLoading,
     createUser,
     loginUser,
     googleSigning,
     logOut,
-    updateUser
+    updateUser,
   };
 
   return (
