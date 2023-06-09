@@ -11,7 +11,7 @@
 
 .active {
   color: #f76c4a;
-  background-color: #0000;
+  background-color: white;
 }
 
 .my-btn {
@@ -20,4 +20,8 @@
 
 .my-outline-btn {
   @apply btn btn-outline hover:bg-[#FD603D] hover:border-[#FD603D] border-[#FD603D] text-[#ff5934];
+}
+
+.dashBord-menu-item{
+  @apply flex pl-10  items-center gap-5 font-bold text-lg py-2
 }

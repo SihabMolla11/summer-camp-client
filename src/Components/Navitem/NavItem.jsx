@@ -27,7 +27,7 @@ const NavItem = () => {
         <NavLink to="/classes">Classes</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to="dashboard">Dashboard</NavLink>
       </li>
     </>
   );

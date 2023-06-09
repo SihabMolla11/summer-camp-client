@@ -5,6 +5,11 @@ import Login from "../shear/Login&Register/Login";
 import Home from "../Pages/Home/Home";
 import Classes from "../Pages/Classes/Classes";
 import Instructors from "../Pages/Instectors/Instructors";
+import DashBoard from "../Layout/DashBoard";
+import MySelectedClass from "../Dashboard/MyCelectedClass/MySelectedClass";
+import MyEnrollClass from "../Dashboard/MyEnrollClasses/MyEnrollClass";
+import AddaClass from "../Dashboard/Instructor/AddAClass/AddaClass";
+import MyClass from "../Dashboard/Instructor/MyClass/MyClass";
 
 export const router = createBrowserRouter([
   {
@@ -24,12 +29,34 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path:"/classes",
-        element:<Classes/>
+        path: "/classes",
+        element: <Classes />,
       },
       {
         path: "/instructors",
-        element:<Instructors/>
+        element: <Instructors />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashBoard />,
+    children: [
+      {
+        path: "selected-classes",
+        element: <MySelectedClass />,
+      },
+      {
+        path: "enroll-classes",
+        element: <MyEnrollClass />,
+      },
+      {
+        path:"add-class",
+        element:<AddaClass/>
+      },
+      {
+        path:"myclass",
+        element:<MyClass/>
       }
     ],
   },
