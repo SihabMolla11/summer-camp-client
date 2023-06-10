@@ -73,17 +73,17 @@ const AuthProvider = ({ children }) => {
       .then((res) => setAllUsers(res.data));
   }, []);
 
-  // getCurrentUser(user?.email).then((res) => {
-  //   setInstructor(res.data)
-  //   console.log(res?.data)
-  // });
-  // console.log(isInstructor)
+ 
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_LINK}/users/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setInstructor(data?.role));
-  }, [user]);
+    if (user?.email) {
+      fetch(`${import.meta.env.VITE_API_LINK}/users/${user?.email}`)
+        .then((res) => res.json())
+        .then((data) => setInstructor(data?.role));
+    }
+  }, [user?.email]);
+
+
 
   const authInfo = {
     user,

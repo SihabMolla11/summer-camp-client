@@ -9,7 +9,7 @@ const ClassCard = ({ data }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { name, image, InstructorName, sets, price } = data;
+  const { name, image, InstructorName, seats, sets, price } = data;
 
   const handelSelectedClass = () => {
     if (!user) {

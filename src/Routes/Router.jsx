@@ -10,6 +10,7 @@ import MySelectedClass from "../Dashboard/MyCelectedClass/MySelectedClass";
 import MyEnrollClass from "../Dashboard/MyEnrollClasses/MyEnrollClass";
 import AddaClass from "../Dashboard/Instructor/AddAClass/AddaClass";
 import MyClass from "../Dashboard/Instructor/MyClass/MyClass";
+import DashBoardHome from "../Dashboard/DashBoardHome";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
     path: "dashboard",
     element: <DashBoard />,
     children: [
+      {
+        path:"",
+        element:<DashBoardHome/>
+      },
       {
         path: "selected-classes",
         element: <MySelectedClass />,

@@ -1,4 +1,3 @@
-// import axios from "axios"
 
 // opst users
 export const AddUsers = (user) => {
@@ -16,10 +15,3 @@ export const AddUsers = (user) => {
         .then(res => res.json())
         .then(data => console.log(data))
 }
-
-
-// get current user
-// export const getCurrentUser = async (email) =>{
-//     const data = (await axios.get(`${import.meta.env.VITE_API_LINK}/users/${email}`))
-//     return data
-// }

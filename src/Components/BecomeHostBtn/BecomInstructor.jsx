@@ -21,6 +21,7 @@ const BecomInstructor = () => {
         if (data.modifiedCount > 0) {
           Swal.fire("successful", "now you are a instructor", "success");
         }
+        window.location.reload();
       });
   };
 
