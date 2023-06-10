@@ -37,8 +37,10 @@ const AddaClass = () => {
           price,
           seats,
           instructorImage: user?.photoURL,
+          status: "pending",
         };
-        AddAclass(newClass)
+        AddAclass(newClass);
+        form.reset()
       });
   };
 
