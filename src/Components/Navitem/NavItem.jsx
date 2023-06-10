@@ -9,7 +9,8 @@ import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
 
 const NavItem = () => {
-  const { user, logOut, isInstructor } = useContext(AuthContext);
+  const { user, logOut, loggingUser } = useContext(AuthContext);
+
 
   const handelLogOut = () => {
     logOut()
@@ -92,7 +93,6 @@ const NavItem = () => {
                 </MenuItem>
               )}
             </Menu>
-
           </div>
           <Link to="/">
             <img
@@ -115,7 +115,7 @@ const NavItem = () => {
             <>
               <div
                 className={`cursor-pointer mr-4 border-2 px-3 py-2 rounded-full ${
-                  isInstructor && "hidden"
+                  loggingUser?.role === "instructor" && "hidden"
                 }`}
               >
                 <BecomInstructor />

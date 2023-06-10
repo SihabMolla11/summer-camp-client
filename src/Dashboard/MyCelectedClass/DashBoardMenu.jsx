@@ -7,7 +7,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const DashBoardMenu = () => {
-  const { isInstructor } = useContext(AuthContext);
+  const { loggingUser } = useContext(AuthContext);
+
 
   return (
     <div className=" mt-5 text-left text-white">
@@ -16,7 +17,8 @@ const DashBoardMenu = () => {
       </Link>
       <hr />
       <div className="my-10">
-        {isInstructor ? <InstuctorMenuItem /> : <StudentMenuItem />}
+      <StudentMenuItem />
+        {loggingUser?.role === "instructor" && <InstuctorMenuItem />  }
       </div>
       <hr />
       <div>

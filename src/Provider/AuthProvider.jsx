@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [allUsers, setAllUsers] = useState([]);
-  const [isInstructor, setInstructor] = useState(null);
+  const [loggingUser, setLogginUser] = useState(null);
 
   // create user
   const createUser = (email, password) => {
@@ -73,13 +73,13 @@ const AuthProvider = ({ children }) => {
       .then((res) => setAllUsers(res.data));
   }, []);
 
- 
+
 
   useEffect(() => {
     if (user?.email) {
       fetch(`${import.meta.env.VITE_API_LINK}/users/${user?.email}`)
         .then((res) => res.json())
-        .then((data) => setInstructor(data?.role));
+        .then((data) => setLogginUser(data));
     }
   }, [user?.email]);
 
@@ -89,7 +89,7 @@ const AuthProvider = ({ children }) => {
     user,
     allUsers,
     loading,
-    isInstructor,
+    loggingUser,
     setLoading,
     createUser,
     loginUser,
