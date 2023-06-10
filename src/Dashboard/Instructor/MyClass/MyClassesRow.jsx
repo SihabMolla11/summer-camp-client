@@ -1,8 +1,8 @@
 import { FaTrashAlt, FaEdit } from "react-icons/fa";
 
-const MyClassesRow = ({ index, data }) => {
+const MyClassesRow = ({ index, data,handelDeleteClass }) => {
   // console.log(data);
-  const { classImage, name, status, price } = data;
+  const { classImage, name, status, price,_id } = data;
 
   return (
     <>
@@ -38,7 +38,7 @@ const MyClassesRow = ({ index, data }) => {
           </button>
         </th>
         <th>
-          <button className="p-2 bg-red-200 rounded-full text-red-500 hover:bg-red-300 hover:text-red-600 text-lg ">
+          <button onClick={()=>handelDeleteClass(_id)} className="p-2 bg-red-200 rounded-full text-red-500 hover:bg-red-300 hover:text-red-600 text-lg ">
             <FaTrashAlt />
           </button>
         </th>
