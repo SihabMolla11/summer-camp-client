@@ -17,7 +17,7 @@ const Instructors = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-4 gap-10">
+      <div className="grid grid-cols-4 mt-10 gap-10">
        {
         instructors.map(inst=> <Instructor key={inst._id} inst={inst}  />)
        }

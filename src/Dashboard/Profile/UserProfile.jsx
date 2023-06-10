@@ -15,9 +15,17 @@ const UserProfile = () => {
       </h2>
       <h2 className="text-center text-lg mt-3 font-bold">{user?.email}</h2>
       <div className="text-center">
+        {/* <div
+          className={`cursor-pointer my-btn mt-5 ${
+            loggingUser?.role === "instructor" ? "hidden" : ""
+          }`}
+        >
+          <BecomInstructor />
+        </div> */}
+
         <div
-          className={`cursor-pointer my-btn mt-5  ${
-            loggingUser?.role === "instructor" && "hidden"
+          className={`cursor-pointer mt-3 bg-[#FD603D] mx-6 rounded-lg px-3 py-2  ${
+            loggingUser?.role === "instructor" ? "hidden" : ""
           }`}
         >
           <BecomInstructor />
