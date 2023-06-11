@@ -11,6 +11,8 @@ const BecomInstructor = () => {
       role: "instructor",
     };
 
+    
+
     fetch(`${import.meta.env.VITE_API_LINK}/users/${user.email}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },

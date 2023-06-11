@@ -3,9 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Spinner from "../../../Components/Spinner/Spinner";
 import AllClassesRow from "./AllClassesRow";
+import FeeDbacModal from "./FeeDbacModal";
 
 const ManagesClasses = () => {
   const [allClasses, setAllClasses] = useState([]);
+  const [classId, setClassId] = useState(null);
 
   // get all classes
   const { isLoading, refetch } = useQuery({
@@ -19,7 +21,7 @@ const ManagesClasses = () => {
     queryKey: ["classes"],
   });
 
-//   console.log(allClasses);
+
 
   if (isLoading) {
     return (
@@ -48,10 +50,16 @@ const ManagesClasses = () => {
           </thead>
           <tbody>
             {allClasses.map((data) => (
-              <AllClassesRow key={data._id} data={data} />
+              <AllClassesRow
+                key={data._id}
+                data={data}
+                setClassId={setClassId}
+                refetch={refetch}
+              />
             ))}
           </tbody>
         </table>
+        <FeeDbacModal classId={classId} />
       </div>
     </>
   );

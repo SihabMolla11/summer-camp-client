@@ -22,6 +22,6 @@
   @apply btn btn-outline hover:bg-[#FD603D] hover:border-[#FD603D] border-[#FD603D] text-[#ff5934];
 }
 
-.dashBord-menu-item{
-  @apply flex pl-10  items-center gap-5 font-bold text-lg py-2
+.dashBord-menu-item {
+  @apply flex pl-10  items-center gap-5 font-bold text-lg py-2;
 }
