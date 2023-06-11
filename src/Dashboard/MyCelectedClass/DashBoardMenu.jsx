@@ -5,10 +5,10 @@ import InstuctorMenuItem from "../Instructor/InstuctorMenu/InstuctorMenuItem";
 import UserProfile from "../Profile/UserProfile";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import AdminMenu from "./AdminMenu";
 
 const DashBoardMenu = () => {
   const { loggingUser } = useContext(AuthContext);
-
 
   return (
     <div className=" mt-5 text-left text-white">
@@ -17,8 +17,9 @@ const DashBoardMenu = () => {
       </Link>
       <hr />
       <div className="my-10">
-      <StudentMenuItem />
-        {loggingUser?.role === "instructor" && <InstuctorMenuItem />  }
+        {loggingUser?.role === "guest" || loggingUser?.role === "instructor" ? <StudentMenuItem /> : ""}
+        {loggingUser?.role === "instructor" && <InstuctorMenuItem />}
+        {loggingUser?.role === "admin" && <AdminMenu/>}
       </div>
       <hr />
       <div>

@@ -4,7 +4,8 @@ export const AddUsers = (user) => {
     const currentUser = {
         email: user?.email,
         name: user?.displayName,
-        image: user?.photoURL
+        image: user?.photoURL,
+        role: "guest"
     }
 
     fetch(`${import.meta.env.VITE_API_LINK}/users`, {

@@ -11,6 +11,8 @@ import MyEnrollClass from "../Dashboard/MyEnrollClasses/MyEnrollClass";
 import AddaClass from "../Dashboard/Instructor/AddAClass/AddaClass";
 import MyClass from "../Dashboard/Instructor/MyClass/MyClass";
 import DashBoardHome from "../Dashboard/DashBoardHome";
+import ManagesClasses from "../Dashboard/Admin/ManageClasses/ManagesClasses";
+import ManagesUsers from "../Dashboard/Admin/ManagesUsers/ManagesUsers";
 
 export const router = createBrowserRouter([
   {
@@ -44,8 +46,8 @@ export const router = createBrowserRouter([
     element: <DashBoard />,
     children: [
       {
-        path:"",
-        element:<DashBoardHome/>
+        path: "",
+        element: <DashBoardHome />,
       },
       {
         path: "selected-classes",
@@ -56,13 +58,21 @@ export const router = createBrowserRouter([
         element: <MyEnrollClass />,
       },
       {
-        path:"add-class",
-        element:<AddaClass/>
+        path: "add-class",
+        element: <AddaClass />,
       },
       {
-        path:"myclass",
-        element:<MyClass/>
-      }
+        path: "myclass",
+        element: <MyClass />,
+      },
+      {
+        path: "manageclasses",
+        element: <ManagesClasses />,
+      },
+      {
+        path: "manageusers",
+        element: <ManagesUsers />,
+      },
     ],
   },
 ]);

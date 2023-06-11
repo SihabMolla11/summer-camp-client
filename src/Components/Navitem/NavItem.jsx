@@ -11,7 +11,6 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 const NavItem = () => {
   const { user, logOut, loggingUser } = useContext(AuthContext);
 
-
   const handelLogOut = () => {
     logOut()
       .then(() => {})
@@ -115,7 +114,7 @@ const NavItem = () => {
             <>
               <div
                 className={`cursor-pointer mr-4 border-2 px-3 py-2 rounded-full ${
-                  loggingUser?.role === "instructor" ? "hidden" : ""
+                  loggingUser?.role === "guest" ? "" : "hidden"
                 }`}
               >
                 <BecomInstructor />
