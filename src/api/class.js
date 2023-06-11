@@ -43,3 +43,29 @@ export const ChangeClassStatus = async (status, id, refetch) => {
             }
         })
 }
+
+
+// send feed back
+export const SendFeedbackForClass = async (feedback, classId, refetch) => {
+    const newFeedback = {
+        feedback: feedback
+    };
+    fetch(`${import.meta.env.VITE_API_LINK}/singleClass/${classId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newFeedback)
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            refetch()
+            if (data.matchedCount > 0) {
+                Swal.fire(
+                    'Feedback Sanded',
+                    `${feedback} Send Feedback successfully`,
+                    'success'
+                )
+                
+            }
+        })
+}

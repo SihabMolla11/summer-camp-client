@@ -1,8 +1,11 @@
-const FeeDbacModal = ({ classId }) => {
+import { SendFeedbackForClass } from "../../../api/class";
+
+const FeeDbacModal = ({ classId, refetch }) => {
   const handelClassFeedback = (event) => {
     event.preventDefault();
     const feedback = event.target.feedback.value;
-    console.log(feedback);
+    SendFeedbackForClass(feedback, classId, refetch);
+    event.target.reset()
   };
 
   return (

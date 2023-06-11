@@ -21,8 +21,6 @@ const ManagesClasses = () => {
     queryKey: ["classes"],
   });
 
-
-
   if (isLoading) {
     return (
       <div>
@@ -59,7 +57,7 @@ const ManagesClasses = () => {
             ))}
           </tbody>
         </table>
-        <FeeDbacModal classId={classId} />
+        <FeeDbacModal classId={classId} refetch={refetch} />
       </div>
     </>
   );
