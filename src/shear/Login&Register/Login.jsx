@@ -39,14 +39,14 @@ const Login = () => {
   };
 
   return (
-    <div className="my-container bg-base-200 py-10">
+    <div className="my-container  py-10">
       <div>
-        <div className="flex items-center gap-[150px]">
+        <div className="flex items-center gap-[50px]">
           <div className="w-full">
             <Lottie animationData={loginLotte} />
           </div>
-          <div className="w-full  rounded-lg bg-base-100 py-10 ">
-            <div className="flex items-center justify-between px-16 mb-5 ">
+          <div className="w-full  rounded-lg bg-[#4a6cd14b] py-10 ">
+            <div className="flex items-center gap-4 justify-between px-16 mb-5 ">
               <p className="text-4xl font-semibold">Login</p>
               <GoogleLogin />
             </div>

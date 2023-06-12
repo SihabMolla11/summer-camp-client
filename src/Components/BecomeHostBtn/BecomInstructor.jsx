@@ -4,14 +4,14 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const BecomInstructor = () => {
-  const { user } = useContext(AuthContext);
+  const { user, refetch } = useContext(AuthContext);
 
   const handelBecomeInstructor = () => {
     const currentUser = {
       role: "instructor",
     };
 
-    
+
 
     fetch(`${import.meta.env.VITE_API_LINK}/users/${user.email}`, {
       method: "PUT",
@@ -23,7 +23,7 @@ const BecomInstructor = () => {
         if (data.modifiedCount > 0) {
           Swal.fire("successful", "now you are a instructor", "success");
         }
-        window.location.reload();
+        refetch()
       });
   };
 

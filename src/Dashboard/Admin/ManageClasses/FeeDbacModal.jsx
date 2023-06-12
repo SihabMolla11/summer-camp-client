@@ -17,18 +17,18 @@ const FeeDbacModal = ({ classId, refetch }) => {
             Please Give Feedback
           </h3>
           <p className="py-4">
-            If you want Denied this class so you have to give your feedback !
+           please give your Feedback why you deny this class! 
           </p>
           <form onSubmit={handelClassFeedback}>
             <input
-              className="outline rounded-md p-2 w-full outline-orange-600 outline-1"
+              className="outline rounded-md p-5  w-full outline-orange-600 outline-1"
               type="text"
               name="feedback"
               id=""
               placeholder="Give your Feedback"
             />
             <input
-              className="my-outline-btn mt-5"
+              className="my-outline-btn  mt-5"
               type="submit"
               value="Send Feedback"
             />

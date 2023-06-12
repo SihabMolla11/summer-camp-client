@@ -140,7 +140,7 @@ const NavItem = () => {
                     <div className=" text-5xl rounded-full">
                       {user ? (
                         <img
-                          className=" rounded-full h-14 w-14"
+                          className="border-2 border-orange-500 rounded-full h-12 w-12"
                           src={user?.photoURL}
                           alt=""
                         />

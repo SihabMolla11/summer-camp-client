@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Toaster, toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import GoogleLogin from "./GoogleLogin";
 import { AddUsers } from "../../api/user";
@@ -12,6 +12,7 @@ import { AddUsers } from "../../api/user";
 const image_upload_key = import.meta.env.VITE_IMAGE_UPLOA_KEY;
 const Register = () => {
   const imageHostUrl = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
+  const navigate = useNavigate()
 
   const { createUser, updateUser, setLoading, loading } =
     useContext(AuthContext);
@@ -50,8 +51,8 @@ const Register = () => {
                 // add user
                 AddUsers(result?.user);
                 toast.success("sing Up successful");
-
                 setLoading(false);
+                navigate("/")
               })
               .catch((error) => {
                 setError(error.message);
@@ -71,20 +72,19 @@ const Register = () => {
 
   return (
     <>
-      <div className="my-container bg-base-200 p-10">
+      <div className="my-container  p-10">
         <div>
-          <div className="flex flex-row-reverse items-center gap-[150px]">
+          <div className="flex flex-row-reverse items-center gap-[50px]">
             <div className="w-full">
               <Lottie animationData={loginLotte} />
             </div>
-            <div className="w-full rounded-lg bg-base-100 py-10">
-              <div className="flex items-center justify-between px-16 mb-5 ">
-                <p className="text-4xl font-semibold">Login</p>
+            <div className="w-full rounded-lg bg-[#4a6cd14b] py-10">
+              <div className="flex items-center justify-between gap-4 px-16 mb-5 ">
+                <p className="text-4xl font-semibold">Sign up</p>
                 <GoogleLogin />
               </div>
               <hr />
               <div className="card-body px-16">
-                <p className="text-4xl font-semibold">Sign up</p>
                 <form onSubmit={handleSubmit(onSubmit)} className=" space-y-5">
                   <div className="form-control">
                     <label className="label">

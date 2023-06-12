@@ -8,7 +8,7 @@ const UserProfile = () => {
   return (
     <div>
       <div className="flex justify-center mt-5">
-        <img className="rounded-full h-16 w-16" src={user?.photoURL} alt="" />
+        <img className="rounded-full h-24 w-24 border-4" src={user?.photoURL} alt="" />
       </div>
       <h2 className="text-center text-xl mt-5 font-bold">
         {user?.displayName}

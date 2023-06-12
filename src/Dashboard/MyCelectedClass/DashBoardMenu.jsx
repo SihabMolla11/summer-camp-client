@@ -17,9 +17,9 @@ const DashBoardMenu = () => {
       </Link>
       <hr />
       <div className="my-10">
-        {loggingUser?.role === "student" || loggingUser?.role === "instructor" ? <StudentMenuItem /> : ""}
+        {loggingUser?.role === "student" ? <StudentMenuItem /> : ""}
         {loggingUser?.role === "instructor" && <InstuctorMenuItem />}
-        {loggingUser?.role === "admin" && <AdminMenu/>}
+        {loggingUser?.role === "admin" && <AdminMenu />}
       </div>
       <hr />
       <div>

@@ -2,6 +2,7 @@ import {
   FaRegTimesCircle,
   FaRegCheckCircle,
   FaPinterestP,
+  FaChevronDown,
 } from "react-icons/fa";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
@@ -81,12 +82,15 @@ const AllClassesRow = ({ data, setClassId, refetch }) => {
           <Menu
             menuButton={
               <MenuButton
+                disabled={status !== "pending"}
                 title="Change status"
-                className={`${status === "approve" && "stasus-approved"} ${
-                  status === "pending" && "stasus-pending"
-                }  ${status === "denied" && "stasus-denied"}`}
+                className={`btn btn-sm ${
+                  status === "approve" && "stasus-approved"
+                } ${status === "pending" && "stasus-pending"}  ${
+                  status === "denied" && "stasus-denied btn"
+                }`}
               >
-                {status}
+                {status} <FaChevronDown />
               </MenuButton>
             }
             transition

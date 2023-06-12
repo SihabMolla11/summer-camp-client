@@ -17,9 +17,10 @@ const ClassCard = ({ ApproveClass }) => {
     classImage,
     instructorName,
     price,
-    email,
+    instrucTorEmail: email,
     seats,
     Classid: _id,
+    email: user?.email,
   };
 
   const handelSelectedClass = () => {
@@ -49,8 +50,8 @@ const ClassCard = ({ ApproveClass }) => {
           if (data?.insertedId) {
             toast.success("class Selected successfully");
           }
-          if(data?.message){
-            toast.error("the class allrady exist")
+          if (data?.message) {
+            toast.error("the class allrady exist");
           }
         });
     }

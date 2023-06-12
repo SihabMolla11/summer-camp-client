@@ -74,32 +74,32 @@ const AuthProvider = ({ children }) => {
       .then((res) => setAllUsers(res.data));
   }, []);
 
-  useEffect(() => {
-    if (user?.email) {
-      fetch(`${import.meta.env.VITE_API_LINK}/users/${user?.email}`)
-        .then((res) => res.json())
-        .then((data) => setLogginUser(data));
-    }
-  }, [user?.email]);
+  // useEffect(() => {
+  //   if (user?.email) {
+  //     fetch(`${import.meta.env.VITE_API_LINK}/users/${user?.email}`)
+  //       .then((res) => res.json())
+  //       .then((data) => setLogginUser(data));
+  //   }
+  // }, [user?.email]);
 
   //  TODO
-  // const { isLoading } = useQuery({
-  //   queryKey: ["looginUser"],
-  //   queryFn: async () => {
-  //     const data = await axios.get(
-  //       `${import.meta.env.VITE_API_LINK}/users/${user?.email}`
-  //     );
-  //     setLogginUser(data.data);
-  //     return data;
-  //   },
-  // });
-
-  // console.log(loggingUser);
+  const { refetch } = useQuery({
+    queryKey: ["looginUser"],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const data = await axios.get(
+        `${import.meta.env.VITE_API_LINK}/users/${user?.email}`
+      );
+      setLogginUser(data.data);
+      return data;
+    },
+  });
 
   const authInfo = {
     user,
     allUsers,
     loading,
+    refetch,
     loggingUser,
     setLoading,
     createUser,
