@@ -82,29 +82,22 @@ const AllClassesRow = ({ data, setClassId, refetch }) => {
             menuButton={
               <MenuButton
                 title="Change status"
-                className="cursor-pointer border-2 border-[#fd603d] text-[#fd603d] w-full hover:bg-[#fd603d] hover:text-white p-2 rounded-md font-bold "
+                className={`${status === "approve" && "stasus-approved"} ${
+                  status === "pending" && "stasus-pending"
+                }  ${status === "denied" && "stasus-denied"}`}
               >
                 {status}
               </MenuButton>
             }
             transition
           >
-            <MenuItem
-              onClick={statusApproved}
-              className=" border-2 border-green-500 rounded-md mx-4  text-green-500 font-medium hover:text-white my-2 hover:bg-green-500 flex items-center gap-2 text-xl"
-            >
+            <MenuItem onClick={statusApproved} className=" approved-class">
               <FaRegCheckCircle /> <span>Approve</span>{" "}
             </MenuItem>
-            <MenuItem
-              onClick={statusDenied}
-              className=" border-2 border-red-500 rounded-md mx-4  text-red-500 font-medium hover:text-white my-2 hover:bg-red-500 flex items-center gap-2 text-xl"
-            >
+            <MenuItem onClick={statusDenied} className=" deny-class">
               <FaRegTimesCircle /> <span>Denied</span>{" "}
             </MenuItem>
-            <MenuItem
-              onClick={statusPending}
-              className=" border-2 border-blue-500 rounded-md mx-4  text-blue-500 font-medium hover:text-white my-2 hover:bg-blue-500  flex items-center gap-2 text-xl"
-            >
+            <MenuItem onClick={statusPending} className=" pending-class">
               <FaPinterestP /> <span>Pending</span>
             </MenuItem>
           </Menu>
@@ -129,3 +122,5 @@ const AllClassesRow = ({ data, setClassId, refetch }) => {
 };
 
 export default AllClassesRow;
+
+// className="cursor-pointer border-2 border-[#fd603d] text-[#fd603d] w-full hover:bg-[#fd603d] hover:text-white p-2 rounded-md font-bold "

@@ -25,3 +25,25 @@
 .dashBord-menu-item {
   @apply flex pl-10  items-center gap-5 font-bold text-lg py-2;
 }
+
+.approved-class {
+  @apply border-2 border-green-500 rounded-md mx-4  text-green-500 font-medium hover:text-white my-2 hover:bg-green-500 flex items-center gap-2 text-xl;
+}
+
+.deny-class {
+  @apply border-2 border-red-500 rounded-md mx-4  text-red-500 font-medium hover:text-white my-2 hover:bg-red-500 flex items-center gap-2 text-xl;
+}
+
+.pending-class {
+  @apply border-2 border-blue-500 rounded-md mx-4  text-blue-500 font-medium hover:text-white my-2 hover:bg-blue-500  flex items-center gap-2 text-xl;
+}
+
+.stasus-approved {
+  @apply border-2 border-green-500 rounded-md p-1 text-green-500 font-medium hover:text-white hover:bg-green-500 flex items-center gap-2 ;
+}
+.stasus-pending {
+  @apply border-2 border-blue-500 rounded-md p-1 text-blue-500 font-medium hover:text-white hover:bg-blue-500 flex items-center gap-2 ;
+}
+.stasus-denied {
+  @apply border-2 border-red-500 rounded-md p-1 text-red-500 font-medium hover:text-white hover:bg-red-500 flex items-center gap-2 ;
+}
