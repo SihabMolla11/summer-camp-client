@@ -8,9 +8,19 @@ import { Toaster, toast } from "react-hot-toast";
 const ClassCard = ({ ApproveClass }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  // console.log(ApproveClass)
+  // console.log(ApproveClass);
 
-  const { name, classImage, instructorName, seats, price } = ApproveClass;
+  const { name, classImage, instructorName, email, _id, seats, price } =
+    ApproveClass;
+  const SelctedClass = {
+    name,
+    classImage,
+    instructorName,
+    price,
+    email,
+    seats,
+    id: _id,
+  };
 
   const handelSelectedClass = () => {
     if (!user) {
@@ -28,7 +38,18 @@ const ClassCard = ({ ApproveClass }) => {
         }
       });
     } else {
-      toast.success("class Selected successfully");
+      fetch(`${import.meta.env.VITE_API_LINK}/selectedClasses`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(SelctedClass),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data?.insertedId) {
+            toast.success("class Selected successfully");
+          }
+        });
     }
   };
 
@@ -48,17 +69,19 @@ const ClassCard = ({ ApproveClass }) => {
             </p>
           </div>
           <hr />
-          <div className=" space-y-2 my-4 px-6">
+          <div className=" space-y-2 h-36 my-4 px-6">
             <h2 className="text-2xl font-bold text-[#3f3e3e] ">
               Class Name: {name}
             </h2>
             <p className="mt-2 text-xl font-medium">
               Instructor Name: {instructorName}
             </p>
+            <p className="mt-2  ">Instructor email: {email}</p>
           </div>
           <hr />
           <div className="card-actions justify-end p-6">
             <button
+              disabled={user?.email === email}
               onClick={handelSelectedClass}
               className="my-outline-btn flex items-center"
             >

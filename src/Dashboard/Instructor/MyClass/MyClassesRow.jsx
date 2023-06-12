@@ -4,6 +4,8 @@ const MyClassesRow = ({ index, data,handelDeleteClass }) => {
   // console.log(data);
   const { classImage, name, status, price,_id } = data;
 
+  
+
   return (
     <>
       <tr>

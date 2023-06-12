@@ -17,7 +17,7 @@ const UserProfile = () => {
       <div className="text-center">
         <div
           className={`cursor-pointer mt-3 bg-[#FD603D] mx-6 rounded-lg px-3 py-2  ${
-            loggingUser?.role === "guest" ? "" : "hidden"
+            loggingUser?.role === "student" ? "" : "hidden"
           }`}
         >
           <BecomInstructor />

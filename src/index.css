@@ -39,11 +39,15 @@
 }
 
 .stasus-approved {
-  @apply border-2 border-green-500 rounded-md p-1 text-green-500 font-medium hover:text-white hover:bg-green-500 flex items-center gap-2 ;
+  @apply border-2 border-green-500 rounded-md p-1 text-green-500 font-medium hover:text-white hover:bg-green-500 flex items-center gap-2;
 }
 .stasus-pending {
-  @apply border-2 border-blue-500 rounded-md p-1 text-blue-500 font-medium hover:text-white hover:bg-blue-500 flex items-center gap-2 ;
+  @apply border-2 border-blue-500 rounded-md p-1 text-blue-500 font-medium hover:text-white hover:bg-blue-500 flex items-center gap-2;
 }
 .stasus-denied {
-  @apply border-2 border-red-500 rounded-md p-1 text-red-500 font-medium hover:text-white hover:bg-red-500 flex items-center gap-2 ;
+  @apply border-2 border-red-500 rounded-md p-1 text-red-500 font-medium hover:text-white hover:bg-red-500 flex items-center gap-2;
+}
+
+.user-role-btn {
+  @apply border-2 border-[#FD603D] rounded-md p-1 text-[#FD603D] font-medium hover:text-white hover:bg-[#FD603D] flex items-center gap-2;
 }

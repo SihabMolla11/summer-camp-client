@@ -114,7 +114,7 @@ const NavItem = () => {
             <>
               <div
                 className={`cursor-pointer mr-4 border-2 px-3 py-2 rounded-full ${
-                  loggingUser?.role === "guest" ? "" : "hidden"
+                  loggingUser?.role === "student" ? "" : "hidden"
                 }`}
               >
                 <BecomInstructor />
