@@ -1,11 +1,10 @@
-
 // opst users
 export const AddUsers = (user) => {
     const currentUser = {
         email: user?.email,
         name: user?.displayName,
         image: user?.photoURL,
-        role: "guest"
+        role: "student"
     }
 
     fetch(`${import.meta.env.VITE_API_LINK}/users`, {
@@ -15,4 +14,30 @@ export const AddUsers = (user) => {
     })
         .then(res => res.json())
         .then(data => console.log(data))
+}
+
+
+
+// user student from instructor or admin
+export const UpdateUserRole = async (role, id, refetch) => {
+    const newRole = {
+        role: role
+    };
+    fetch(`${import.meta.env.VITE_API_LINK}/users/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newRole)
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            refetch()
+            // if (data.matchedCount > 0) {
+            //     Swal.fire(
+            //         `class ${status}`,
+            //         `this class ${status} successful`,
+            //         'success'
+            //     )
+            // }
+        })
 }

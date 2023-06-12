@@ -5,20 +5,23 @@ import ClassCard from "./ClassCard";
 import Spinner from "../../Components/Spinner/Spinner";
 
 const Classes = () => {
-  const classesUrl = "public/class.json";
   const [classes, setClasses] = useState([]);
-  // useEffect(() => {
-  //   axios.get(classesUrl).then((res) => console.log(res.data));
-  // }, []);
 
   const { isLoading, error } = useQuery({
     queryFn: async () => {
-      const data = await axios.get(classesUrl);
+      const data = await axios.get(
+        `${import.meta.env.VITE_API_LINK}/allClasses`
+      );
       setClasses(data.data);
       return data;
     },
     queryKey: ["classes"],
   });
+
+  // filter approvedDatas
+  const approveClasses = classes.filter((data) => data?.status === "approve");
+    // console.log(approveClasses)
+
 
   if (isLoading) {
     return <Spinner />;
@@ -34,9 +37,10 @@ const Classes = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-16 gap-8">
-        {classes.map((data, index) => (
-          <ClassCard key={index} data={data}></ClassCard>
+        {approveClasses.map((ApproveClass) => (
+          <ClassCard key={ApproveClass?._id} ApproveClass={ApproveClass} />
         ))}
+
       </div>
     </>
   );

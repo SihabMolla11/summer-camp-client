@@ -65,7 +65,7 @@ export const SendFeedbackForClass = async (feedback, classId, refetch) => {
                     `${feedback} Send Feedback successfully`,
                     'success'
                 )
-                
+
             }
         })
 }

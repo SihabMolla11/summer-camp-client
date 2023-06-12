@@ -5,7 +5,7 @@ const FeeDbacModal = ({ classId, refetch }) => {
     event.preventDefault();
     const feedback = event.target.feedback.value;
     SendFeedbackForClass(feedback, classId, refetch);
-    event.target.reset()
+    event.target.reset();
   };
 
   return (

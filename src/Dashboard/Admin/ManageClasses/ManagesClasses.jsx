@@ -32,7 +32,7 @@ const ManagesClasses = () => {
   return (
     <>
       <div className="overflow-x-auto">
-        <table className="table mt-5">
+        <table className="table rounded-xl ">
           {/* head */}
           <thead className="drop-shadow-md bg-blue-200">
             <tr className="">

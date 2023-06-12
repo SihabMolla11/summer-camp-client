@@ -82,7 +82,7 @@ const AllClassesRow = ({ data, setClassId, refetch }) => {
             menuButton={
               <MenuButton
                 title="Change status"
-                className="cursor-pointer hover:bg-slate-300 p-2 rounded-md font-medium "
+                className="cursor-pointer border-2 border-[#fd603d] text-[#fd603d] w-full hover:bg-[#fd603d] hover:text-white p-2 rounded-md font-bold "
               >
                 {status}
               </MenuButton>
@@ -110,16 +110,18 @@ const AllClassesRow = ({ data, setClassId, refetch }) => {
           </Menu>
         </td>
         <td>
-          { status === "denied" ? (
+          {status === "denied" ? (
             <button onClick={() => setClassId(_id)}>
               <label
-                className="cursor-pointer hover:bg-slate-300 p-2 rounded-md font-medium "
+                className="cursor-pointer border-2 border-[#fd603d] text-[#fd603d] w-full hover:bg-[#fd603d] hover:text-white p-2 rounded-md font-bold "
                 htmlFor="my_modal_7"
               >
-                Feedback
+                Send Feedback
               </label>
             </button>
-          ) : "" }
+          ) : (
+            ""
+          )}
         </td>
       </tr>
     </>

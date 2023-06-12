@@ -5,11 +5,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 
-const ClassCard = ({ data }) => {
+const ClassCard = ({ ApproveClass }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  // console.log(ApproveClass)
 
-  const { name, image, InstructorName, seats, sets, price } = data;
+  const { name, classImage, instructorName, seats, price } = ApproveClass;
 
   const handelSelectedClass = () => {
     if (!user) {
@@ -33,14 +34,14 @@ const ClassCard = ({ data }) => {
 
   return (
     <div>
-      <div className=" w-full bg-base-100 card shadow-xl">
+      <div className=" w-full h-full bg-base-100 card shadow-xl">
         <figure>
-          <img src={image} alt="Shoes" />
+          <img className="w-full h-56" src={classImage} alt="Shoes" />
         </figure>
         <div className="">
           <div className="flex items-center font-medium justify-between text-lg p-5">
             <p className="text-green-500 border-2 rounded-2xl py-1 px-3">
-              Available Sets: {sets}
+              Available Sets: {seats}
             </p>
             <p className=" border-2 rounded-2xl py-1 px-3 text-[#ff9900]">
               price: ${price}
@@ -52,7 +53,7 @@ const ClassCard = ({ data }) => {
               Class Name: {name}
             </h2>
             <p className="mt-2 text-xl font-medium">
-              Instructor Name: {InstructorName}
+              Instructor Name: {instructorName}
             </p>
           </div>
           <hr />
