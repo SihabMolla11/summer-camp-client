@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { app } from "../Firebase/firebase";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 export const AuthContext = createContext(null);
 
@@ -46,7 +47,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("current user", currentUser);
+      // console.log("current user", currentUser);
       setLoading(false);
     });
     return () => {
@@ -73,8 +74,6 @@ const AuthProvider = ({ children }) => {
       .then((res) => setAllUsers(res.data));
   }, []);
 
-
-
   useEffect(() => {
     if (user?.email) {
       fetch(`${import.meta.env.VITE_API_LINK}/users/${user?.email}`)
@@ -83,7 +82,19 @@ const AuthProvider = ({ children }) => {
     }
   }, [user?.email]);
 
+  //  TODO
+  // const { isLoading } = useQuery({
+  //   queryKey: ["looginUser"],
+  //   queryFn: async () => {
+  //     const data = await axios.get(
+  //       `${import.meta.env.VITE_API_LINK}/users/${user?.email}`
+  //     );
+  //     setLogginUser(data.data);
+  //     return data;
+  //   },
+  // });
 
+  // console.log(loggingUser);
 
   const authInfo = {
     user,

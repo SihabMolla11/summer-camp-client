@@ -3,16 +3,16 @@ import { UpdateUserRole } from "../../../api/user";
 const AllUsersRow = ({ user, index, refetch }) => {
   //   console.log(user);
 
-  const { _id } = user;
+  const { email } = user;
 
   const HandelCreateInstructor = () => {
     const role = "instructor";
-    UpdateUserRole(role, _id, refetch);
+    UpdateUserRole(role, email, refetch);
   };
 
   const HandelCreateAdmin = () => {
     const role = "admin";
-    UpdateUserRole(role, _id, refetch);
+    UpdateUserRole(role, email, refetch);
   };
 
   return (

@@ -19,11 +19,11 @@ export const AddUsers = (user) => {
 
 
 // user student from instructor or admin
-export const UpdateUserRole = async (role, id, refetch) => {
+export const UpdateUserRole = async (role, email, refetch) => {
     const newRole = {
         role: role
     };
-    fetch(`${import.meta.env.VITE_API_LINK}/users/${id}`, {
+    fetch(`${import.meta.env.VITE_API_LINK}/users/${email}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newRole)
