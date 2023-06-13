@@ -13,6 +13,7 @@ import MyClass from "../Dashboard/Instructor/MyClass/MyClass";
 import DashBoardHome from "../Dashboard/DashBoardHome";
 import ManagesClasses from "../Dashboard/Admin/ManageClasses/ManagesClasses";
 import ManagesUsers from "../Dashboard/Admin/ManagesUsers/ManagesUsers";
+import Payment from "../Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,12 @@ export const router = createBrowserRouter([
       {
         path: "manageusers",
         element: <ManagesUsers />,
+      },
+      {
+        path: "payment/:id",
+        element: <Payment />,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_LINK}/selectedClass/${params.id}`),
       },
     ],
   },

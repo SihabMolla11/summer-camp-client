@@ -3,7 +3,6 @@ import logo from "../../assets/logo.png";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-import BecomInstructor from "../BecomeHostBtn/BecomInstructor";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
@@ -110,18 +109,6 @@ const NavItem = () => {
         </div>
 
         <div className="navbar-end">
-          {user && (
-            <>
-              <div
-                className={`cursor-pointer mr-4 border-2 px-3 py-2 rounded-full ${
-                  loggingUser?.role === "student" ? "" : "hidden"
-                }`}
-              >
-                <BecomInstructor />
-              </div>
-            </>
-          )}
-
           <div className=" hidden md:block">
             <div className="flex  items-center gap-5">
               {user ? (

@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const SelectedClassRow = ({ seClass,refetch }) => {
+const SelectedClassRow = ({ seClass, refetch }) => {
   console.log(seClass);
   const { classImage, instructorName, name, price, _id } = seClass;
 
@@ -24,7 +25,7 @@ const SelectedClassRow = ({ seClass,refetch }) => {
             if (data.deletedCount) {
               Swal.fire("Deleted!", "this class deleted successful", "success");
             }
-            refetch()
+            refetch();
           });
       }
     });
@@ -55,9 +56,12 @@ const SelectedClassRow = ({ seClass,refetch }) => {
           </button>
         </td>
         <td>
-          <button className="border-2 px-2 py-1 rounded-md border-green-500 font-bold text-green-500 hover:bg-green-600 hover:text-white">
-            Enroll Now
-          </button>
+          <Link to={`/dashboard/payment/${_id}`}>
+            {" "}
+            <button className="border-2 px-2 py-1 rounded-md border-green-500 font-bold text-green-500 hover:bg-green-600 hover:text-white">
+              Enroll Now
+            </button>
+          </Link>
         </td>
       </tr>
     </>
