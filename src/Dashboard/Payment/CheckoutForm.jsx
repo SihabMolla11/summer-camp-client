@@ -3,11 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
+import { SavePayment } from "../../api/payment";
 
 const CheckoutForm = ({ data }) => {
-  // console.log(data);
-
-  const { price } = data;
+  const { price, name, classImage, instructorName, Classid } = data;
 
   const { user } = useContext(AuthContext);
 
@@ -71,10 +70,29 @@ const CheckoutForm = ({ data }) => {
 
     console.log("PAYMENTiNTENT", paymentIntent);
     if (paymentIntent?.status === "succeeded") {
-      // const transactionId = paymentIntent?.id;
       setTransectionId(paymentIntent?.id);
       toast.success(`$ ${data?.price} Payed successful`);
-      // TODO next stps
+
+      // save payment information in sarver
+
+      const payment = {
+        email: user?.email,
+        transactionId: paymentIntent?.id,
+        price,
+        name,
+        classImage,
+        instructorName,
+        Classid,
+      };
+
+      // useEffect(() => {
+      //   axios
+      //     .post(`${import.meta.env.VITE_API_LINK}/payments`, payment)
+      //     .then((res) => console.log(res?.data));
+      // }, [payment]);
+
+      SavePayment(payment)
+
     }
   };
 
