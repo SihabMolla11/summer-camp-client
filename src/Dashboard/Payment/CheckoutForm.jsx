@@ -6,7 +6,7 @@ import axios from "axios";
 import { SavePayment } from "../../api/payment";
 
 const CheckoutForm = ({ data }) => {
-  const { price, name, classImage, instructorName, Classid } = data;
+  const { price, name, classImage, instructorName, Classid, _id } = data;
 
   const { user } = useContext(AuthContext);
 
@@ -79,10 +79,12 @@ const CheckoutForm = ({ data }) => {
         email: user?.email,
         transactionId: paymentIntent?.id,
         price,
+        date: new Date(),
         name,
         classImage,
         instructorName,
         Classid,
+        selectCId: _id
       };
       SavePayment(payment);
     }

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const SelectedClassRow = ({ seClass, refetch }) => {
+const SelectedClassRow = ({ seClass, refetch, index }) => {
   console.log(seClass);
   const { classImage, instructorName, name, price, _id } = seClass;
 
@@ -34,7 +34,7 @@ const SelectedClassRow = ({ seClass, refetch }) => {
   return (
     <>
       <tr>
-        <th></th>
+        <th>{index + 1}</th>
         <td>
           <div className="flex items-center avatar space-x-3 mask mask-squircle w-12 h-12">
             <img src={classImage} alt="class image" />

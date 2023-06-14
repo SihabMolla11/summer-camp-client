@@ -46,11 +46,12 @@ const MySelectedClass = () => {
             </tr>
           </thead>
           <tbody>
-            {selectedClasse.map((seClass) => (
+            {selectedClasse.map((seClass, index) => (
               <SelectedClassRow
                 key={seClass._id}
                 seClass={seClass}
                 refetch={refetch}
+                index={index}
               />
             ))}
           </tbody>
