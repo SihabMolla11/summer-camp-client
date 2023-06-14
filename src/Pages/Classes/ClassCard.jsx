@@ -5,13 +5,22 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 
-const ClassCard = ({ ApproveClass }) => {
+const ClassCard = ({ ApproveClass, enrollClasses }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  // console.log(ApproveClass);
+  // console.log(enrollClasses);
 
   const { name, classImage, instructorName, email, _id, seats, price } =
     ApproveClass;
+
+  const totalPaymentClass = enrollClasses.filter(
+    (enClass) => enClass?.Classid === _id
+  );
+  // console.log(totalPaymentClass);
+
+
+  const avseats = seats - totalPaymentClass.length;
+
   const SelctedClass = {
     name,
     classImage,
@@ -59,21 +68,33 @@ const ClassCard = ({ ApproveClass }) => {
 
   return (
     <div>
-      <div className=" w-full h-full bg-base-100 card shadow-xl">
+      <div
+        className={` w-full h-full bg-base-100 card shadow-xl ${
+          avseats <= 0 && "bg-red-100"
+        }`}
+      >
         <figure>
           <img className="w-full h-56" src={classImage} alt="Shoes" />
         </figure>
         <div className="">
           <div className="flex items-center font-medium justify-between text-lg p-5">
-            <p className="text-green-500 border-2 rounded-2xl py-1 px-3">
-              Available Sets: {seats}
+            <p
+              className={`text-green-500 border-2 rounded-2xl py-1 px-3 ${
+                avseats <= 0 && "border-red-500 text-red-600"
+              }`}
+            >
+              Available Sets: {avseats}
             </p>
-            <p className=" border-2 rounded-2xl py-1 px-3 text-[#ff9900]">
+            <p
+              className={` border-2 rounded-2xl py-1 px-3 text-[#ff9900] ${
+                avseats <= 0 && "border-red-500"
+              }`}
+            >
               price: ${price}
             </p>
           </div>
-          <hr />
-          <div className=" space-y-2 h-36 my-4 px-6">
+          <hr className={`${avseats <= 0 && "border-[#0000005b]"}`} />
+          <div className=" space-y-2 h-36 my-10 px-6">
             <h2 className="text-2xl font-bold text-[#3f3e3e] ">
               Class Name: {name}
             </h2>
@@ -81,11 +102,14 @@ const ClassCard = ({ ApproveClass }) => {
               Instructor Name: {instructorName}
             </p>
             <p className="mt-2  ">Instructor email: {email}</p>
+            <p className="text-blue-500 font-medium text-lg ">
+              Total Seats: {seats}
+            </p>
           </div>
-          <hr />
+          <hr className={`${avseats <= 0 && "border-[#0000005b]"}`} />
           <div className="card-actions justify-end p-6">
             <button
-              disabled={user?.email === email}
+              disabled={user?.email === email || avseats <= 0}
               onClick={handelSelectedClass}
               className="my-outline-btn flex items-center"
             >
