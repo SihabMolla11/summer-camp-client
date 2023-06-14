@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Spinner from "../../../Components/Spinner/Spinner";
 import MyClassesRow from "./MyClassesRow";
@@ -9,8 +9,10 @@ import Swal from "sweetalert2";
 const MyClass = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
+  const [enrollClasses, setEnrollClasses] = useState([]);
 
   const { isLoading, refetch } = useQuery({
+    enabled: !!user?.email,
     queryFn: async () => {
       const data = await axios.get(
         `${import.meta.env.VITE_API_LINK}/my-classes?email=${user?.email}`
@@ -20,6 +22,12 @@ const MyClass = () => {
     },
     queryKey: ["my-classes"],
   });
+
+  useEffect(() => {
+    axios.get(`${import.meta.env.VITE_API_LINK}/payments`).then((res) => {
+      setEnrollClasses(res.data);
+    });
+  }, []);
 
   const handelDeleteClass = (id) => {
     Swal.fire({
@@ -80,6 +88,7 @@ const MyClass = () => {
                 data={data}
                 index={index}
                 handelDeleteClass={handelDeleteClass}
+                enrollClasses={enrollClasses}
               />
             ))}
           </tbody>

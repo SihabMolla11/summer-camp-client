@@ -17,8 +17,6 @@ const GoogleLogin = () => {
     googleSigning()
       .then((result) => {
         console.log(result);
-        toast.success("login successful");
-
         // add user
         AddUsers(result?.user);
         toast.success("sing Up successful");

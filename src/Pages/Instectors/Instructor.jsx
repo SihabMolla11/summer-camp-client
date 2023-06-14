@@ -1,28 +1,16 @@
-const Instructor = ({inst}) => {
-
-    console.log(inst)
-
+const Instructor = ({ inst }) => {
+  console.log(inst);
 
   return (
     <>
-      <div className=" rounded-xl drop-shadow-2xl relative h-full  w-full">
-        <div className="rounded-t-xl pt-10 bg-[#FD603D] w-full h-[50%]">
-          <div className="absolute top-8 px-20 ">
+      <div className="card w-full bg-gradient-to-t from-[#e2b0659d] to-[#f0899a] shadow-xl">
+        <figure className="px-10 pt-10">
+          <img src={inst?.image} alt="Shoes" className="rounded-full h-44 w-44" />
+        </figure>
+        <div className="card-body items-center text-center">
+          <h2 className="card-title font-bold text-[#000000d2]">{inst?.name}</h2>
+          <p className="text-blue-500 font-bold underline cursor-pointer">{inst?.email}</p>
 
-            {/* TODO PLEASE FIXED INSTRUCTOR IMAGE */}
-
-            <img
-              className=" rounded-full border-[#8fc3ff] border-4 h-28 w-28"
-              src={inst?.image}
-              alt=""
-            />
-          </div>
-        </div>
-        <div className="text-center rounded-b-xl  bg-white h-full">
-          <div>
-            <h2 className="pt-20 text-2xl font-bold mb-5">{inst.name}</h2>
-            <h4 className="text-lg font-medium">{inst.email}</h4>
-          </div>
         </div>
       </div>
     </>

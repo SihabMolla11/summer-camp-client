@@ -23,7 +23,7 @@ const UserRole = () => {
         community.
       </p>
 
-      <div className="py-10 px-16 gap-24 justify-center grid grid-cols-3">
+      <div className="py-10 px-16 gap-24 justify-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div className=" p-10 w-full rounded-xl drop-shadow-2xl bg-white">
           <div className="flex justify-center">
             <span className="bg-purple-200  text-purple-600 p-6 rounded-full text-6xl">

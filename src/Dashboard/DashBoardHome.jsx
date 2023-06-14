@@ -1,12 +1,19 @@
 import Lottie from "lottie-react";
 import dashboard from "../assets/dashboard.json";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const DashBoardHome = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="text-center">
-      <h2 className="text-5xl my-14 uppercase text-[#FF7000] font-bold">
-        Welcome to your dashboard
-      </h2>
+      <div className="py-12">
+        <h2 className="text-3xl  uppercase text-[#6e6d6b] font-bold">
+          {user?.displayName}
+        </h2>
+        <p className=" text-lg text-[#FF7000] font-medium"> -- Welcome to your dashboard --</p>
+      </div>
       <div className="text-center">
         <div className=" flex justify-center ">
           <Lottie animationData={dashboard} />

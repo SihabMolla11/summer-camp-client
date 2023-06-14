@@ -18,7 +18,6 @@ const ClassCard = ({ ApproveClass, enrollClasses }) => {
   );
   // console.log(totalPaymentClass);
 
-
   const avseats = seats - totalPaymentClass.length;
 
   const SelctedClass = {
@@ -102,9 +101,12 @@ const ClassCard = ({ ApproveClass, enrollClasses }) => {
               Instructor Name: {instructorName}
             </p>
             <p className="mt-2  ">Instructor email: {email}</p>
-            <p className="text-blue-500 font-medium text-lg ">
-              Total Seats: {seats}
-            </p>
+            <div className=" flex justify-between  items-center ">
+              <p className="text-blue-500 font-medium text-lg ">
+                Total Seats: {seats}
+              </p>
+              <p className="badge badge-secondary font-medium">Enroll Student: {totalPaymentClass.length}</p>
+            </div>
           </div>
           <hr className={`${avseats <= 0 && "border-[#0000005b]"}`} />
           <div className="card-actions justify-end p-6">

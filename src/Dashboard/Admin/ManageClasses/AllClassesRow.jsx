@@ -59,12 +59,12 @@ const AllClassesRow = ({ data, setClassId, refetch }) => {
         }`}
       >
         <td>
-          <div className="flex avatar items-center mask mask-squircle w-12 h-12">
+          <div className="flex avatar  mask mask-squircle w-12 h-12">
             <img src={classImage} alt="Avatar Tailwind CSS Component" />
           </div>
         </td>
         <td>
-          <p>{name}</p>
+          <p title={name} className=" cursor-pointer font-medium">{name.slice(0,10)}...</p>
         </td>
         <td>
           <p>{instructorName}</p>
@@ -110,10 +110,10 @@ const AllClassesRow = ({ data, setClassId, refetch }) => {
           {status === "denied" ? (
             <button onClick={() => setClassId(_id)}>
               <label
-                className="cursor-pointer border-2 border-[#fd603d] text-[#fd603d] w-full hover:bg-[#fd603d] hover:text-white p-2 rounded-md font-bold "
+                className="cursor-pointer border-2 border-[#fd603d] text-[#fd603d] w-full hover:bg-[#fd603d] hover:text-white  rounded-md p-1 "
                 htmlFor="my_modal_7"
               >
-                Send Feedback
+                Feedback
               </label>
             </button>
           ) : (
