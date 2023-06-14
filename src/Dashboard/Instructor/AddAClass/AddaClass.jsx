@@ -1,10 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { AddAclass } from "../../../api/class";
+import useDTitle from "../../../api/useDTitle";
 
 const image_upload_key = import.meta.env.VITE_IMAGE_UPLOA_KEY;
 
 const AddaClass = () => {
+
+  useDTitle("Add A Class")
+
   const imageHostUrl = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
 
   const { user } = useContext(AuthContext);

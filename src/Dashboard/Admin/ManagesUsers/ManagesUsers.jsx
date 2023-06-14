@@ -3,8 +3,12 @@ import AllUsersRow from "./AllUsersRow";
 import axios from "axios";
 import Spinner from "../../../Components/Spinner/Spinner";
 import { useState } from "react";
+import useDTitle from "../../../api/useDTitle";
 
 const ManagesUsers = () => {
+
+  useDTitle("Manage Users")
+
   const [users, setUsers] = useState([]);
 
   const { isLoading, refetch } = useQuery({

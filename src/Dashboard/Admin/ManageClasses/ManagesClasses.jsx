@@ -4,8 +4,11 @@ import axios from "axios";
 import Spinner from "../../../Components/Spinner/Spinner";
 import AllClassesRow from "./AllClassesRow";
 import FeeDbacModal from "./FeeDbacModal";
+import useDTitle from "../../../api/useDTitle";
 
 const ManagesClasses = () => {
+  useDTitle("Manage Classes");
+
   const [allClasses, setAllClasses] = useState([]);
   const [classId, setClassId] = useState(null);
 

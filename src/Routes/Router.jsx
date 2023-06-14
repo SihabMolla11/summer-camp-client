@@ -15,11 +15,13 @@ import ManagesClasses from "../Dashboard/Admin/ManageClasses/ManagesClasses";
 import ManagesUsers from "../Dashboard/Admin/ManagesUsers/ManagesUsers";
 import Payment from "../Dashboard/Payment/Payment";
 import PaymentHistory from "../Dashboard/MyEnrollClasses/PaymentHistory";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/login",

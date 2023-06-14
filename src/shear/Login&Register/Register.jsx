@@ -8,9 +8,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { TbFidgetSpinner } from "react-icons/tb";
 import GoogleLogin from "./GoogleLogin";
 import { AddUsers } from "../../api/user";
+import useTitle from "../../api/useTitle";
 
 const image_upload_key = import.meta.env.VITE_IMAGE_UPLOA_KEY;
+
+
+
+
 const Register = () => {
+
+  useTitle("Sign Up")
+
   const imageHostUrl = `https://api.imgbb.com/1/upload?key=${image_upload_key}`;
   const navigate = useNavigate()
 

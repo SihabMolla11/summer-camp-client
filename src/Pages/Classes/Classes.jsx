@@ -3,8 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ClassCard from "./ClassCard";
 import Spinner from "../../Components/Spinner/Spinner";
+import useTitle from "../../api/useTitle";
 
 const Classes = () => {
+
+  useTitle("Classes")
+
   const [classes, setClasses] = useState([]);
   const [enrollClasses, setEnrollClasses] = useState([]);
 

@@ -2,10 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Instructor from "./Instructor";
 import Spinner from "../../Components/Spinner/Spinner";
+import useTitle from "../../api/useTitle";
 
 const Instructors = () => {
   const { loggingUser, loading } = useContext(AuthContext);
   const [instructors, setInstructors] = useState([]);
+
+  useTitle("InsTructors")
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_LINK}/instructors?role=instructor`)

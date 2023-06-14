@@ -1,9 +1,13 @@
+import useTitle from "../../api/useTitle";
 import InstructorSection from "./InstructorSection";
 import PopulerClasses from "./PopulerClasses";
 import Slider from "./Slider";
 import UserRole from "./UserRole";
 
 const Home = () => {
+
+  useTitle("Home")
+
   return (
     <>
       <div>

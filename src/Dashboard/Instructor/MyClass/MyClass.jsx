@@ -5,8 +5,12 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import Spinner from "../../../Components/Spinner/Spinner";
 import MyClassesRow from "./MyClassesRow";
 import Swal from "sweetalert2";
+import useDTitle from "../../../api/useDTitle";
 
 const MyClass = () => {
+
+  useDTitle("My Classes")
+
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
   const [enrollClasses, setEnrollClasses] = useState([]);

@@ -1,8 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import PayRow from "./PayRow";
+import useDTitle from "../../api/useDTitle";
 
 const PaymentHistory = () => {
+
+  useDTitle("My Payment History")
+
   const { user } = useContext(AuthContext);
   const [payments, setPayments] = useState([]);
 

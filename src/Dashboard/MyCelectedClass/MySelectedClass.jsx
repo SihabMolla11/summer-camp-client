@@ -5,8 +5,12 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Spinner from "../../Components/Spinner/Spinner";
+import useDTitle from "../../api/useDTitle";
 
 const MySelectedClass = () => {
+
+  useDTitle("My Selected Class")
+
   const { user, loading } = useContext(AuthContext);
   const [selectedClasse, setSelectedClasses] = useState([]);
 

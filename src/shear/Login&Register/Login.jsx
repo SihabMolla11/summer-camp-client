@@ -7,8 +7,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
 import GoogleLogin from "./GoogleLogin";
+import useTitle from "../../api/useTitle";
 
 const Login = () => {
+
+  useTitle("Login")
+
   const { loginUser, loading, setLoading } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
