@@ -84,15 +84,7 @@ const CheckoutForm = ({ data }) => {
         instructorName,
         Classid,
       };
-
-      // useEffect(() => {
-      //   axios
-      //     .post(`${import.meta.env.VITE_API_LINK}/payments`, payment)
-      //     .then((res) => console.log(res?.data));
-      // }, [payment]);
-
-      SavePayment(payment)
-
+      SavePayment(payment);
     }
   };
 

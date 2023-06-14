@@ -10,7 +10,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const UserRole = () => {
   const { loggingUser } = useContext(AuthContext);
-  console.log(loggingUser);
+  // console.log(loggingUser);
 
   return (
     <div className="bg-[#EEEFF8] rounded-lg text-center mb-10">
