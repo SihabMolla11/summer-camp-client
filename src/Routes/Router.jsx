@@ -16,12 +16,14 @@ import ManagesUsers from "../Dashboard/Admin/ManagesUsers/ManagesUsers";
 import Payment from "../Dashboard/Payment/Payment";
 import PaymentHistory from "../Dashboard/MyEnrollClasses/PaymentHistory";
 import ErrorPage from "../Pages/ErrorPage";
+import PrivateRout from "./PrivateRoute";
+import PrivateRoutForAdmin from "./PrivateRoutForAdmin";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/login",
@@ -41,13 +43,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "/instructors",
-        element: <Instructors />,
+        element: (
+          <PrivateRout>
+            <Instructors />
+          </PrivateRout>
+        ),
       },
     ],
   },
   {
     path: "dashboard",
-    element: <DashBoard />,
+    element: (
+      <PrivateRout>
+        <DashBoard />
+      </PrivateRout>
+    ),
     children: [
       {
         path: "",
@@ -63,7 +73,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "paymentHistory",
-        element:<PaymentHistory/>
+        element: <PaymentHistory />,
       },
       {
         path: "add-class",
@@ -75,11 +85,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "manageclasses",
-        element: <ManagesClasses />,
+        element: (
+          <PrivateRoutForAdmin>
+            <ManagesClasses />,
+          </PrivateRoutForAdmin>
+        ),
       },
       {
         path: "manageusers",
-        element: <ManagesUsers />,
+        element: (
+          <PrivateRoutForAdmin>
+            <ManagesUsers />
+          </PrivateRoutForAdmin>
+        ),
       },
       {
         path: "payment/:id",
