@@ -14,6 +14,7 @@ import DashBoardHome from "../Dashboard/DashBoardHome";
 import ManagesClasses from "../Dashboard/Admin/ManageClasses/ManagesClasses";
 import ManagesUsers from "../Dashboard/Admin/ManagesUsers/ManagesUsers";
 import Payment from "../Dashboard/Payment/Payment";
+import PaymentHistory from "../Dashboard/MyEnrollClasses/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: "enroll-classes",
         element: <MyEnrollClass />,
+      },
+      {
+        path: "paymentHistory",
+        element:<PaymentHistory/>
       },
       {
         path: "add-class",
